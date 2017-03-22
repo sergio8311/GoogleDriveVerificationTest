@@ -11,10 +11,10 @@ namespace Google_Drive_Verification.PageObjects
 
         public LoginPage(IWebDriver driver)
         {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
             this.driver = driver;
             PageFactory.InitElements(driver, this);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
-        }
+            }
 
         //UserName field
         [FindsBy(How = How.Id, Using = "Email")]

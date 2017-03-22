@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using Google_Drive_Verification.Extensions;
 using NUnit.Framework;
@@ -11,15 +12,21 @@ namespace Google_Drive_Verification.TestCases
     [TestFixture]
     public class GoogleDriveVerificationTest
     {
+        IWebDriver driver = new ChromeDriver();
+
+        [SetUp]
+        public void Initialize()
+        {
+            driver.Manage().Window.Maximize();
+            //url to login page
+            driver.Url = "https://accounts.google.com/ServiceLogin";
+            Console.WriteLine("Opened LoginPage");
+        }
+        
         [Test]
         public void UploadAndDelteFile()
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-
-            //url to login page
-            driver.Url = "https://accounts.google.com/ServiceLogin";
-            
+               
             var userName = "g.drive.test.serg@gmail.com";
             var Password = "GoogleDriveVerificationTest";
             var path = @"C:\Projects\GoogleDriveVerificationTest\TestFile\TestFile.txt";
@@ -45,27 +52,37 @@ namespace Google_Drive_Verification.TestCases
             
             //upload file to google drive
             seleniumExtensions.UploadFile(path);
+
             //open recently uploaded file
             goolgeDrivePage.ClickToRecentlyButton();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             if (goolgeDrivePage.FindTestFile().Text == expectedFileName)
             {
                 goolgeDrivePage.ClickToUploadedFile();
                 goolgeDrivePage.ClickToDelteButton();
                 goolgeDrivePage.ClickToMyAvatar();
                 goolgeDrivePage.Logout();
-                driver.SwitchTo().Alert().Accept();
+                Console.WriteLine("Logout complete");
+                //driver.SwitchTo().Alert().Accept();
             }
                
             else
             {
-                //Console.WriteLine("The file wasn’t uploaded");
-                MessageBox.Show("The file wasn’t uploaded");
+                Console.WriteLine("The file wasn’t uploaded");
+                //MessageBox.Show("The file wasn’t uploaded");
 
             }
-            driver.Dispose();
+            
         }
-         
+
+        [TearDown]
+        public void CleanUp()
+        {
+            driver.Quit();
+            Console.WriteLine("Close the browser");
+        }
+
     }
+    
 }

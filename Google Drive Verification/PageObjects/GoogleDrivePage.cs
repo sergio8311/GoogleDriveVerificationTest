@@ -2,6 +2,7 @@
 using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Google_Drive_Verification.PageObjects
 {
@@ -91,7 +92,7 @@ namespace Google_Drive_Verification.PageObjects
         public void Logout()
         {
             LogoutButton.Click();
-        }
-         
+        }       
+
     }
 }

@@ -10,9 +10,10 @@ namespace Google_Drive_Verification.PageObjects
 
         public MyAccountPage(IWebDriver driver)
         {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
             this.driver = driver;
             PageFactory.InitElements(driver, this);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            
         }
 
         //Show More button
