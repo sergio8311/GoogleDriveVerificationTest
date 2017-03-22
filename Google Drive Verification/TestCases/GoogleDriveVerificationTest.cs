@@ -23,7 +23,7 @@ namespace Google_Drive_Verification.TestCases
             
             var userName = "g.drive.test.serg@gmail.com";
             var Password = "GoogleDriveVerificationTest";
-            var path = @"C:\Users\test\Documents\Visual Studio 2015\Projects\Google Drive Verification\TestFile\TestFile.txt";
+            var path = @"C:\Projects\GoogleDriveVerificationTest\TestFile\TestFile.txt";
             var expectedFileName = "TestFile.txt";
 
             var loginPage = new LoginPage(driver);
