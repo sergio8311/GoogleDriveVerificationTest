@@ -8,10 +8,9 @@ using Google_Drive_Verification.PageObjects;
 
 namespace Google_Drive_Verification.TestCases
 {
+    [TestFixture]
     public class GoogleDriveVerificationTest
     {
-
-
         [Test]
         public void UploadAndDelteFile()
         {
